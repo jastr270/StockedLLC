@@ -1,0 +1,87 @@
+# App Store Listing Content
+
+## App Name
+Stocked
+
+## Subtitle
+AI-Powered Restaurant Inventory
+
+## Promotional Text
+Transform your restaurant's inventory management with AI-powered intelligence, barcode scanning, and seamless POS integration.
+
+## Description
+Smart Inventory Pro revolutionizes restaurant inventory management with cutting-edge AI technology and mobile-first design.
+
+🤖 AI-POWERED INTELLIGENCE
+• Smart consumption predictions and reorder recommendations
+• Voice-enabled assistant for hands-free operation
+• Proactive alerts for low stock and expiring items
+• Cost optimization suggestions based on usage patterns
+
+📱 PROFESSIONAL MOBILE TOOLS
+• Advanced barcode scanning with product database
+• Hotel pan volume estimation using computer vision
+• Touch-optimized interface designed for busy kitchens
+• Works offline with automatic sync when connected
+
+🔗 SEAMLESS POS INTEGRATION
+• Toast, Clover, Square, OpenTable, and more
+• Real-time sales data synchronization
+• Automatic inventory deduction from sales
+• Menu item to ingredient mapping
+
+👥 TEAM COLLABORATION
+• Role-based access control (Owner, Manager, Staff, Viewer)
+• Real-time collaboration across multiple devices
+• Team member invitations and permissions
+• Complete activity audit logs
+
+🛡️ HACCP COMPLIANCE
+• Food safety inspection workflows
+• Temperature monitoring and logging
+• Quality control checklists and documentation
+• Compliance reporting for health inspections
+
+📊 ADVANCED ANALYTICS
+• Real-time inventory tracking and valuation
+• Cost analysis and waste reduction insights
+• Usage pattern analysis and forecasting
+• Supplier performance metrics
+
+🏢 ENTERPRISE FEATURES
+• Unlimited inventory items and team members
+• Multi-location support for restaurant chains
+• Custom reporting and data export
+• Priority customer support
+
+Perfect for:
+• Independent restaurants and cafes
+• Restaurant chains and franchises
+• Hotels and catering companies
+• Food trucks and mobile vendors
+• Institutional kitchens and cafeterias
+
+PRICING:
+• Starter: Free (10 items, 1 user)
+• Professional: $19.99/month (unlimited items, 10 users)
+• Enterprise: $49.99/month (unlimited everything, priority support)
+
+Start with a 7-day free trial of Professional features - no credit card required!
+
+## Keywords
+restaurant,inventory,food,kitchen,POS,barcode,AI,team,analytics,HACCP
+
+## Support URL
+https://smartinventory.pro/support
+
+## Marketing URL
+https://smartinventory.pro
+
+## Privacy Policy URL
+https://smartinventory.pro/privacy
+
+## Category
+Business
+
+## Content Rating
+4+ (No objectionable content)

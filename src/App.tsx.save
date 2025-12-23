@@ -1,0 +1,13 @@
+import React from 'react';
+import { AuthGuard } from './components/AuthGuard';
+
+export default function App() {
+  return (
+    <AuthGuard>
+      <div style={{ padding: 40 }}>
+        <h1>✅ Logged In</h1>
+        <p>If you see this, auth works.</p>
+      </div>
+    </AuthGuard>
+  );
+}

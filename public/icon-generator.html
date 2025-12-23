@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stocked App Icon Generator</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 40px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 800px;
+        }
+        
+        h1 {
+            color: #1a202c;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+        
+        .subtitle {
+            color: #4a5568;
+            margin-bottom: 40px;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        
+        .icon-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .icon-size {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .icon-container {
+            background: #f7fafc;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .icon-container:hover {
+            transform: translateY(-5px);
+        }
+        
+        .icon-label {
+            font-weight: 600;
+            color: #2d3748;
+            font-size: 0.9rem;
+        }
+        
+        .download-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 16px;
+            margin-top: 40px;
+        }
+        
+        .download-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .instructions {
+            background: #f7fafc;
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 30px;
+            text-align: left;
+        }
+        
+        .step {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        code {
+            background: #e2e8f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📱 Stocked App Icon</h1>
+        <p class="subtitle">Modern, sleek icon for your restaurant inventory app</p>
+        
+        <div class="icon-preview">
+            <div class="icon-size">
+                <div class="icon-container">
+                    <canvas id="icon-1024" width="120" height="120"></canvas>
+                </div>
+                <span class="icon-label">1024×1024<br>App Store</span>
+            </div>
+            
+            <div class="icon-size">
+                <div class="icon-container">
+                    <canvas id="icon-180" width="90" height="90"></canvas>
+                </div>
+                <span class="icon-label">180×180<br>iPhone @3x</span>
+            </div>
+            
+            <div class="icon-size">
+                <div class="icon-container">
+                    <canvas id="icon-120" width="60" height="60"></canvas>
+                </div>
+                <span class="icon-label">120×120<br>iPhone @2x</span>
+            </div>
+            
+            <div class="icon-size">
+                <div class="icon-container">
+                    <canvas id="icon-167" width="83" height="83"></canvas>
+                </div>
+                <span class="icon-label">167×167<br>iPad Pro</span>
+            </div>
+            
+            <div class="icon-size">
+                <div class="icon-container">
+                    <canvas id="icon-152" width="76" height="76"></canvas>
+                </div>
+                <span class="icon-label">152×152<br>iPad @2x</span>
+            </div>
+            
+            <div class="icon-size">
+                <div class="icon-container">
+                    <canvas id="icon-76" width="38" height="38"></canvas>
+                </div>
+                <span class="icon-label">76×76<br>iPad @1x</span>
+            </div>
+        </div>
+        
+        <div class="download-section">
+            <h3>📥 Download All Sizes</h3>
+            <p>Click to download each icon size for Xcode</p>
+            <button class="download-btn" onclick="downloadIcon(1024)">1024×1024</button>
+            <button class="download-btn" onclick="downloadIcon(180)">180×180</button>
+            <button class="download-btn" onclick="downloadIcon(120)">120×120</button>
+            <button class="download-btn" onclick="downloadIcon(167)">167×167</button>
+            <button class="download-btn" onclick="downloadIcon(152)">152×152</button>
+            <button class="download-btn" onclick="downloadIcon(76)">76×76</button>
+        </div>
+        
+        <div class="instructions">
+            <h3>🔧 How to Add to Xcode</h3>
+            
+            <div class="step">
+                <strong>Step 1:</strong> Download all icon sizes using the buttons above
+            </div>
+            
+            <div class="step">
+                <strong>Step 2:</strong> Open your Xcode project: <code>npx cap open ios</code>
+            </div>
+            
+            <div class="step">
+                <strong>Step 3:</strong> In Xcode, navigate to <code>App → Assets.xcassets → AppIcon</code>
+            </div>
+            
+            <div class="step">
+                <strong>Step 4:</strong> Drag and drop each downloaded icon to its corresponding size slot
+            </div>
+            
+            <div class="step">
+                <strong>Step 5:</strong> Build and run your app to see the new icon!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function drawIcon(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            const scale = size / 1024;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+            
+            // Background gradient
+            const bgGradient = ctx.createLinearGradient(0, 0, size, size);
+            bgGradient.addColorStop(0, '#667eea');
+            bgGradient.addColorStop(0.5, '#764ba2');
+            bgGradient.addColorStop(1, '#f093fb');
+            
+            // Draw rounded rectangle background
+            const cornerRadius = 180 * scale;
+            ctx.fillStyle = bgGradient;
+            roundRect(ctx, 0, 0, size, size, cornerRadius);
+            ctx.fill();
+            
+            // Draw stacked boxes
+            const centerX = size / 2;
+            const centerY = size / 2;
+            
+            // Box dimensions
+            const boxWidth = 240 * scale;
+            const boxHeight = 80 * scale;
+            const boxRadius = 12 * scale;
+            
+            // Bottom box (largest, most transparent)
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+            roundRect(ctx, centerX - boxWidth/2, centerY + 40*scale, boxWidth, boxHeight, boxRadius);
+            ctx.fill();
+            
+            // Middle box
+            const midBoxWidth = 220 * scale;
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            roundRect(ctx, centerX - midBoxWidth/2, centerY - 20*scale, midBoxWidth, boxHeight, boxRadius);
+            ctx.fill();
+            
+            // Top box (smallest, most opaque)
+            const topBoxWidth = 200 * scale;
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+            roundRect(ctx, centerX - topBoxWidth/2, centerY - 80*scale, topBoxWidth, boxHeight, boxRadius);
+            ctx.fill();
+            
+            // Checkmark circle
+            const checkRadius = 45 * scale;
+            const checkX = centerX + 80 * scale;
+            const checkY = centerY - 80 * scale;
+            
+            // Checkmark background
+            const checkGradient = ctx.createLinearGradient(
+                checkX - checkRadius, checkY - checkRadius,
+                checkX + checkRadius, checkY + checkRadius
+            );
+            checkGradient.addColorStop(0, '#10b981');
+            checkGradient.addColorStop(1, '#059669');
+            
+            ctx.fillStyle = checkGradient;
+            ctx.beginPath();
+            ctx.arc(checkX, checkY, checkRadius, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // White border for checkmark circle
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = 6 * scale;
+            ctx.stroke();
+            
+            // Checkmark
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = 8 * scale;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.beginPath();
+            ctx.moveTo(checkX - 15*scale, checkY);
+            ctx.lineTo(checkX - 5*scale, checkY + 10*scale);
+            ctx.lineTo(checkX + 15*scale, checkY - 10*scale);
+            ctx.stroke();
+            
+            // Subtle highlight on top box
+            const highlightGradient = ctx.createLinearGradient(
+                centerX - topBoxWidth/2, centerY - 80*scale,
+                centerX - topBoxWidth/2, centerY - 80*scale + boxHeight/2
+            );
+            highlightGradient.addColorStop(0, 'rgba(255, 255, 255, 0.4)');
+            highlightGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+            
+            ctx.fillStyle = highlightGradient;
+            roundRect(ctx, centerX - topBoxWidth/2, centerY - 80*scale, topBoxWidth, boxHeight/2, boxRadius);
+            ctx.fill();
+        }
+        
+        function roundRect(ctx, x, y, width, height, radius) {
+            ctx.beginPath();
+            ctx.moveTo(x + radius, y);
+            ctx.lineTo(x + width - radius, y);
+            ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+            ctx.lineTo(x + width, y + height - radius);
+            ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+            ctx.lineTo(x + radius, y + height);
+            ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+            ctx.lineTo(x, y + radius);
+            ctx.quadraticCurveTo(x, y, x + radius, y);
+            ctx.closePath();
+        }
+        
+        function downloadIcon(size) {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            
+            drawIcon(canvas, size);
+            
+            // Convert to blob and download
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `stocked-icon-${size}x${size}.png`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 'image/png');
+        }
+        
+        // Initialize all icon previews
+        window.onload = function() {
+            const sizes = [
+                { id: 'icon-1024', size: 1024, display: 120 },
+                { id: 'icon-180', size: 180, display: 90 },
+                { id: 'icon-120', size: 120, display: 60 },
+                { id: 'icon-167', size: 167, display: 83 },
+                { id: 'icon-152', size: 152, display: 76 },
+                { id: 'icon-76', size: 76, display: 38 }
+            ];
+            
+            sizes.forEach(({ id, size, display }) => {
+                const canvas = document.getElementById(id);
+                canvas.width = display;
+                canvas.height = display;
+                drawIcon(canvas, display);
+            });
+        };
+    </script>
+</body>
+</html>
