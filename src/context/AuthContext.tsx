@@ -1,17 +1,15 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { supabase } from '../utils/supabase';
 
-type AuthUser = {
-  id: string;
-  email: string;
-  role: 'owner' | 'admin' | 'staff';
-};
+type AuthUser = { id: string; email: string; role: 'owner' | 'admin' | 'staff' };
 
 type AuthContextType = {
   user: AuthUser | null;
   isAuthenticated: boolean;
   isInitializing: boolean;
+  authError: string | null;
   login: (email: string, password: string) => Promise<boolean>;
-  logout: () => void;
+  logout: () => Promise<void>;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -19,39 +17,49 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [isInitializing, setIsInitializing] = useState(true);
+  const [authError, setAuthError] = useState<string | null>(null);
 
-  // ✅ NO Supabase restore (prevents Apple/TestFlight race condition)
   useEffect(() => {
-    setIsInitializing(false);
+    supabase.auth.getSession().then(({ data }) => {
+      if (data.session?.user?.email) {
+        setUser({ id: data.session.user.id, email: data.session.user.email, role: 'owner' });
+      }
+      setIsInitializing(false);
+    });
   }, []);
 
-  // ✅ TEMP LOGIN BYPASS (Apple review safe)
-  const login = async (email: string, _password: string) => {
-    console.log('LOGIN BYPASS:', email);
+  const login = async (email: string, password: string) => {
+    setAuthError(null);
 
-    setUser({
-      id: crypto.randomUUID(),
-      email,
-      role: 'owner',
-    });
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
 
-    return true;
+      if (error) {
+        setAuthError(error.message);
+        return false;
+      }
+
+      if (!data.user?.email) {
+        setAuthError('No user returned from Supabase.');
+        return false;
+      }
+
+      setUser({ id: data.user.id, email: data.user.email, role: 'owner' });
+      return true;
+    } catch (e: any) {
+      // This catches “Failed to fetch” / network / CORS / dead project issues
+      setAuthError(e?.message || 'Network error');
+      return false;
+    }
   };
 
-  const logout = () => {
+  const logout = async () => {
+    await supabase.auth.signOut();
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        isAuthenticated: !!user,
-        isInitializing,
-        login,
-        logout,
-      }}
-    >
+    <AuthContext.Provider value={{ user, isAuthenticated: !!user, isInitializing, authError, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
